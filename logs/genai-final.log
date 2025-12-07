@@ -1,0 +1,62 @@
+nohup: ignoring input
+INFO:     Started server process [109748]
+INFO:     Waiting for application startup.
+INFO:main:🚀 Starting GenAI News Service...
+INFO:main:📰 AI-powered news collection ready
+INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
+INFO:main:✅ Service ready!
+INFO:main:⏰ Automatic news updates every 6 hours
+INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+✅ HuggingFace token loaded: hf_uexchrb...
+INFO:     127.0.0.1:55232 - "GET / HTTP/1.1" 200 OK
+/workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai/rag/embedder.py:30: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  embedding_model = HuggingFaceEmbeddings(
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+/workspaces/ML-Powered-AI-News-Platform/genai-with-agentic-ai/rag/vectordb.py:29: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
+  vectordb = Chroma(
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
+INFO:     127.0.0.1:42136 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42164 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42136 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42170 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42182 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42148 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:api.chat_api:🔄 Initializing Llama 3.2 via HuggingFace API (serverless)...
+INFO:api.chat_api:   Token: hf_uexchrb...
+INFO:api.chat_api:✅ Llama 3.2 API ready! (serverless, no downloads)
+INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+🔍 Category: Health
+🤖 Using LLM for analytical response...
+✅ HuggingFace API LLM initialized with meta-llama/Llama-3.2-3B-Instruct:novita
+DEBUG: Article 1 - ID: 59d2726c-0939-4246-9646-14f335bbb36f, Title: Hospitals facing unprecedented flu season, say NHS bosses
+DEBUG: Article 2 - ID: ff9c3fb1-3d9a-4bac-8dc4-916cb9cbe90e, Title: NHS must take elderly infections much more seriously, Chris Whitty warns
+DEBUG: Article 3 - ID: dbf5bd21-dba7-42d2-80d4-84f65d69400b, Title: Streeting orders review into mental health and ADHD diagnoses
+DEBUG: Final answer preview:
+💡 **AI Analysis:**
+
+Based on the provided news articles, it appears that the UK is facing a challenging period for its healthcare system. The NHS is experiencing an unprecedented flu season, with a record high number of flu patients in hospital, as reported by NHS figures (Article 1). Additionally, there is a growing concern about the impact of diseases such as pneumonia and flu on older adults, with England's chief medical officer, Sir Chris Whitty, warning that these infections are not being t
+INFO:     127.0.0.1:42148 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42148 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+INFO:httpx:HTTP Request: POST https://router.huggingface.co/v1/chat/completions "HTTP/1.1 200 OK"
+🔍 Category: Health
+🤖 Using LLM for analytical response...
+DEBUG: Article 1 - ID: 59d2726c-0939-4246-9646-14f335bbb36f, Title: Hospitals facing unprecedented flu season, say NHS bosses
+DEBUG: Article 2 - ID: ff9c3fb1-3d9a-4bac-8dc4-916cb9cbe90e, Title: NHS must take elderly infections much more seriously, Chris Whitty warns
+DEBUG: Article 3 - ID: dbf5bd21-dba7-42d2-80d4-84f65d69400b, Title: Streeting orders review into mental health and ADHD diagnoses
+DEBUG: Final answer preview:
+💡 **AI Analysis:**
+
+Based on the provided news articles, it appears that the UK's National Health Service (NHS) is facing a challenging flu season, with a record high number of flu patients in hospital (Article 1). This is a concerning trend, as NHS leaders are warning that the country is facing an "unprecedented" flu season (Article 1). Additionally, England's chief medical officer, Sir Chris Whitty, has emphasized the importance of addressing diseases such as pneumonia and flu in older people,
+INFO:     127.0.0.1:54922 - "POST /chat/message HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42946 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42946 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42946 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48620 - "DELETE /chat/conversation/conv_1765132509062 HTTP/1.1" 200 OK

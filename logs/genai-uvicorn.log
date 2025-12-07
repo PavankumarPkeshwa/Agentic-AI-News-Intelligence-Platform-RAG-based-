@@ -1,0 +1,14 @@
+nohup: ignoring input
+INFO:     Started server process [100011]
+INFO:     Waiting for application startup.
+INFO:main:🚀 Starting GenAI News Service...
+INFO:main:📰 AI-powered news collection ready
+INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
+INFO:main:✅ Service ready!
+INFO:main:⏰ Automatic news updates every 6 hours
+INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8000): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+✅ HuggingFace token loaded: hf_uexchrb...

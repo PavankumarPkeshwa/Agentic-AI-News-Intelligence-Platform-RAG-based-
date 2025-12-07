@@ -212,7 +212,7 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
                     seen_titles.add(title)
                     seen_content.add(content_fingerprint)
                     
-                    source = doc.metadata.get("source", "Unknown")
+                    article_id = doc.metadata.get("id", "")
                     category = doc.metadata.get("category", "")
                     
                     article_text = f"📰 **{title}**"
@@ -228,7 +228,8 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
                         'content': content,
                         'category': category
                     })
-                    sources.append(source)
+                    # Store article ID instead of external source URL
+                    sources.append(f"/article/{article_id}" if article_id else "Unknown")
                 
                 if len(articles_info) >= max_articles:
                     break
@@ -256,27 +257,29 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
                 
                 # Create prompt based on model type
                 if hf_token:
-                    # Llama 3.2 Instruct format - needs specific instruction formatting
+                    # Llama 3.2 Instruct format - improved prompt for better responses
                     prompt = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
-You are a helpful AI assistant that analyzes news articles and provides clear, informative answers. Use the provided news context to answer questions accurately and concisely.<|eot_id|><|start_header_id|>user<|end_header_id|>
+You are a knowledgeable AI news analyst. Analyze the provided news articles and give insightful answers based ONLY on the information in the articles. Be specific and reference the article content.<|eot_id|><|start_header_id|>user<|end_header_id|>
 
 Question: {chat.message}
 
-Recent news context:
+News Articles:
 {context}
 
-Please provide a clear, informative answer (2-4 sentences) based on the news articles above.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+Provide a detailed analysis (3-5 sentences) based on the articles above. Reference specific facts from the articles.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
 """
                 else:
                     # Flan-T5 format - simpler prompt
-                    prompt = f"""Question: {chat.message}
+                    prompt = f"""Analyze these news articles and answer the question.
 
-Relevant news context:
+Question: {chat.message}
+
+News Articles:
 {context}
 
-Based on the news above, provide a clear and concise answer (2-3 sentences):"""
+Answer based on the articles (3-4 sentences):"""
                 
                 # Get LLM response
                 try:
@@ -289,21 +292,26 @@ Based on the news above, provide a clear and concise answer (2-3 sentences):"""
                         answer = f"💡 **AI Analysis:**\n\n{llm_answer}\n\n"
                         answer += f"📰 **Top {len(articles_info)} Related Articles:**\n\n"
                         
-                        # Add all 5 articles with links
+                        # Add all 5 articles with internal links
                         for i, article in enumerate(articles_info, 1):
+                            article_id = docs[i-1].metadata.get('id', '') if i-1 < len(docs) else ''
+                            print(f"DEBUG: Article {i} - ID: {article_id}, Title: {article['title']}")
+                            
                             answer += f"{i}. **{article['title']}**"
                             if article['category']:
                                 answer += f" _{article['category']}_"
                             answer += "\n"
                             
-                            # Add source link if available
-                            article_source = sources[i-1] if i-1 < len(sources) else None
-                            if article_source and article_source != "Unknown":
-                                answer += f"   🔗 [Read full article]({article_source})\n"
+                            # Add internal article link (clickable in frontend)
+                            if article_id:
+                                answer += f"   🔗 [Read full article](/article/{article_id})\n"
+                            else:
+                                print(f"WARNING: No ID found for article: {article['title']}")
                             
                             answer += "\n"
                         
                         answer += "💬 Ask me anything about the news!"
+                        print(f"DEBUG: Final answer preview:\n{answer[:500]}")
                     else:
                         # LLM gave poor answer, use article-based response instead
                         print("⚠️ LLM answer too short, using article summary instead")
@@ -311,10 +319,10 @@ Based on the news above, provide a clear and concise answer (2-3 sentences):"""
                         answer += f"📰 **Top {len(articles_info)} Articles:**\n\n"
                         
                         for i, article in enumerate(articles_info, 1):
+                            article_id = docs[i-1].metadata.get('id', '') if i-1 < len(docs) else ''
                             answer += f"{i}. **{article['title']}**\n"
-                            article_source = sources[i-1] if i-1 < len(sources) else None
-                            if article_source and article_source != "Unknown":
-                                answer += f"   🔗 [Read more]({article_source})\n"
+                            if article_id:
+                                answer += f"   🔗 [Read more](/article/{article_id})\n"
                             answer += "\n"
                         
                         answer += "💬 Would you like to know more about any topic?"
@@ -326,10 +334,10 @@ Based on the news above, provide a clear and concise answer (2-3 sentences):"""
                     answer += f"📰 **Top {len(articles_info)} Articles:**\n\n"
                     
                     for i, article in enumerate(articles_info, 1):
+                        article_id = docs[i-1].metadata.get('id', '') if i-1 < len(docs) else ''
                         answer += f"{i}. **{article['title']}**\n"
-                        article_source = sources[i-1] if i-1 < len(sources) else None
-                        if article_source and article_source != "Unknown":
-                            answer += f"   🔗 [Read more]({article_source})\n"
+                        if article_id:
+                            answer += f"   🔗 [Read more](/article/{article_id})\n"
                         answer += "\n"
                     answer += "\n\n💬 Would you like to know more about any specific topic?"
         

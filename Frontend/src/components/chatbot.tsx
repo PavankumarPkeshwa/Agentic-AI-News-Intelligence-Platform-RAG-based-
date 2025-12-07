@@ -7,6 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 interface Message {
   role: "user" | "assistant";
@@ -227,7 +229,55 @@ export function Chatbot() {
                               : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
                           }`}
                         >
-                          <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                          {message.role === "user" ? (
+                            <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                          ) : (
+                            <div className="text-sm prose prose-sm dark:prose-invert max-w-none">
+                              <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                  a: ({ href, children }) => {
+                                    // Internal links (starting with /) - use regular anchor for SPA navigation
+                                    if (href?.startsWith('/')) {
+                                      return (
+                                        <a
+                                          href={href}
+                                          className="text-blue-600 dark:text-blue-400 hover:underline font-medium cursor-pointer"
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            setIsOpen(false);
+                                            window.history.pushState({}, '', href);
+                                            window.dispatchEvent(new PopStateEvent('popstate'));
+                                          }}
+                                        >
+                                          {children}
+                                        </a>
+                                      );
+                                    }
+                                    // External links
+                                    return (
+                                      <a
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
+                                      >
+                                        {children}
+                                      </a>
+                                    );
+                                  },
+                                  p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                  strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+                                  em: ({ children }) => <em className="italic">{children}</em>,
+                                  ul: ({ children }) => <ul className="list-disc ml-4 mb-2">{children}</ul>,
+                                  ol: ({ children }) => <ol className="list-decimal ml-4 mb-2">{children}</ol>,
+                                  li: ({ children }) => <li className="mb-1">{children}</li>,
+                                }}
+                              >
+                                {message.content}
+                              </ReactMarkdown>
+                            </div>
+                          )}
                         </div>
                         {message.sources && message.sources.length > 0 && (
                           <div className="mt-2 flex flex-wrap gap-1">
