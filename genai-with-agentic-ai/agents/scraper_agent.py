@@ -113,21 +113,62 @@ def discover_article_links(homepage_url: str, limit: int = 10) -> List[str]:
 def extract_main_text_from_html(html: str) -> str:
     soup = BeautifulSoup(html, "html.parser")
 
-    # Try <article>
+    # Remove unwanted elements that contain navigation, ads, etc.
+    unwanted_tags = ['nav', 'header', 'footer', 'aside', 'script', 'style', 
+                     'iframe', 'noscript', 'form', 'button']
+    for tag in unwanted_tags:
+        for element in soup.find_all(tag):
+            element.decompose()
+    
+    # Remove elements by class/id that typically contain navigation or ads
+    unwanted_patterns = ['nav', 'menu', 'header', 'footer', 'sidebar', 'ad', 
+                         'advertisement', 'promo', 'related', 'social', 'share',
+                         'comment', 'widget', 'banner', 'newsletter']
+    for pattern in unwanted_patterns:
+        for element in soup.find_all(class_=lambda x: x and pattern in x.lower()):
+            element.decompose()
+        for element in soup.find_all(id=lambda x: x and pattern in x.lower()):
+            element.decompose()
+
+    # Try <article> first (most reliable for news sites)
     article = soup.find("article")
     if article:
         text = article.get_text(separator="\n", strip=True)
         if len(text) > 200:
             return text
 
-    # Fallback: all <p>
+    # Try main content area
+    main = soup.find("main")
+    if main:
+        text = main.get_text(separator="\n", strip=True)
+        if len(text) > 200:
+            return text
+
+    # Fallback: collect paragraphs from likely content areas
+    content_selectors = [
+        'div[class*="content"]',
+        'div[class*="article"]',
+        'div[class*="story"]',
+        'div[class*="post"]',
+    ]
+    
+    for selector in content_selectors:
+        content_div = soup.select_one(selector)
+        if content_div:
+            paragraphs = content_div.find_all("p")
+            if paragraphs and len(paragraphs) >= 3:
+                pts = [p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True)]
+                if pts and len("\n\n".join(pts)) > 200:
+                    return "\n\n".join(pts)
+
+    # Last resort: all <p> tags (but this is less reliable)
     paragraphs = soup.find_all("p")
     if paragraphs:
         pts = [p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True)]
         if pts:
             return "\n\n".join(pts)
 
-    # fallback to body text
+    # Absolute fallback to body text
     body = soup.body
     return body.get_text(separator="\n", strip=True) if body else ""
 

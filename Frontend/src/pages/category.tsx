@@ -45,14 +45,14 @@ export default function CategoryPage() {
 
   const getCategoryHeroImage = (cat: string) => {
     const imageMap: Record<string, string> = {
-      Technology: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
-      Lifestyle: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
-      Sports: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
-      Fitness: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
-      Food: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
-      Travel: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600",
+      Technology: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90",
+      Business: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90",
+      Science: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90",
+      Health: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90",
+      Sports: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90",
+      Entertainment: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90",
     };
-    return imageMap[cat] || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600";
+    return imageMap[cat] || "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1000&q=90";
   };
 
   if (!isValidCategory) {
@@ -75,18 +75,24 @@ export default function CategoryPage() {
       <Header />
       <main>
         {/* Category Hero */}
-        <section className="relative py-24 overflow-hidden">
-          <img
-            src={getCategoryHeroImage(category)}
-            alt={`${category} category`}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{category}</h1>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto">
-              Discover the latest {category.toLowerCase()} news and insights
-            </p>
+        <section className="relative h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={getCategoryHeroImage(category)}
+              alt={`${category} category`}
+              className="w-full h-full object-cover object-center scale-105 hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60"></div>
+          <div className="relative h-full flex items-center justify-center">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl animate-fade-in">
+                {category}
+              </h1>
+              <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto drop-shadow-lg font-light">
+                Discover the latest {category.toLowerCase()} news and insights
+              </p>
+            </div>
           </div>
         </section>
 
