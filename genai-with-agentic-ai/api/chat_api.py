@@ -136,13 +136,13 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
         # Get conversation history
         history = conversation_memory.get(conv_id, [])
         
-        # Detect query type and category
-        query_type, detected_category = detect_query_type(chat.message)
+        # Detect category from query
+        _, detected_category = detect_query_type(chat.message)
         
-        print(f"🔍 Query type: {query_type}, Category: {detected_category}")
+        print(f"🔍 Category: {detected_category}")
         
-        # Search for relevant news articles
-        search_k = 10 if query_type == 'list' else 5
+        # Search for relevant news articles (always get 5 for display)
+        search_k = 5
         
         # Build filter for category if detected
         filter_dict = None
@@ -168,7 +168,7 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
             seen_titles = set()
             seen_content = set()
             
-            max_articles = 10 if query_type == 'list' else 3
+            max_articles = 5  # Always show top 5 articles
             
             for doc in docs:
                 title = doc.metadata.get("title", "").strip()
@@ -233,29 +233,17 @@ def chat_message(chat: ChatMessage) -> ChatResponse:
                 if len(articles_info) >= max_articles:
                     break
             
-            # Generate answer based on query type
+            # Generate answer - ALWAYS use Analytical Mode with LLM reasoning
             if not articles_info:
                 answer = "I found some articles but couldn't extract clear content. Could you try asking about a specific topic like AI, health, sports, or business?"
-            
-            elif query_type == 'list':
-                # LIST MODE: Show articles directly
-                formatted_articles = [article['formatted'] for article in articles_info]
-                
-                if detected_category:
-                    answer = f"Here are the latest {detected_category} news articles:\n\n" + "\n\n".join(formatted_articles)
-                else:
-                    answer = f"Here are the latest news articles:\n\n" + "\n\n".join(formatted_articles)
-                
-                answer += f"\n\n📊 Showing {len(articles_info)} articles"
-                answer += "\n💬 Would you like to know more about any specific topic?"
             
             else:
                 # ANALYTICAL MODE: Use LLM to generate reasoned answer
                 print("🤖 Using LLM for analytical response...")
                 
-                # Prepare context from articles (keep it short for small models)
+                # Prepare context from articles (use top 3 for LLM analysis)
                 context_parts = []
-                for i, article in enumerate(articles_info[:3], 1):  # Use only top 3 articles
+                for i, article in enumerate(articles_info[:3], 1):
                     # Extract key points (first 250 chars of content)
                     snippet = article['content'][:250].strip()
                     context_parts.append(f"Article {i} - {article['title']}:\n{snippet}")
@@ -297,27 +285,52 @@ Based on the news above, provide a clear and concise answer (2-3 sentences):"""
                     
                     # Check if LLM answer is meaningful (not empty or too short)
                     if llm_answer and len(llm_answer) > 20:
-                        # Format final answer with LLM response + article references
-                        answer = f"🤔 **Analysis:**\n\n{llm_answer}\n\n"
-                        answer += f"📚 **Related Articles:**\n\n"
+                        # Format final answer: LLM Analysis + Top 5 Articles with Links
+                        answer = f"💡 **AI Analysis:**\n\n{llm_answer}\n\n"
+                        answer += f"📰 **Top {len(articles_info)} Related Articles:**\n\n"
                         
-                        # Add top 3 article references
-                        for article in articles_info[:3]:
-                            answer += article['formatted'] + "\n\n"
+                        # Add all 5 articles with links
+                        for i, article in enumerate(articles_info, 1):
+                            answer += f"{i}. **{article['title']}**"
+                            if article['category']:
+                                answer += f" _{article['category']}_"
+                            answer += "\n"
+                            
+                            # Add source link if available
+                            article_source = sources[i-1] if i-1 < len(sources) else None
+                            if article_source and article_source != "Unknown":
+                                answer += f"   🔗 [Read full article]({article_source})\n"
+                            
+                            answer += "\n"
                         
-                        answer += "💬 Would you like to explore this topic further?"
+                        answer += "💬 Ask me anything about the news!"
                     else:
                         # LLM gave poor answer, use article-based response instead
                         print("⚠️ LLM answer too short, using article summary instead")
-                        formatted_articles = [article['formatted'] for article in articles_info[:3]]
-                        answer = f"Based on recent news, here's what I found:\n\n" + "\n\n".join(formatted_articles)
-                        answer += "\n\n💬 Would you like to know more about any specific topic?"
+                        answer = f"Based on recent news:\n\n"
+                        answer += f"📰 **Top {len(articles_info)} Articles:**\n\n"
+                        
+                        for i, article in enumerate(articles_info, 1):
+                            answer += f"{i}. **{article['title']}**\n"
+                            article_source = sources[i-1] if i-1 < len(sources) else None
+                            if article_source and article_source != "Unknown":
+                                answer += f"   🔗 [Read more]({article_source})\n"
+                            answer += "\n"
+                        
+                        answer += "💬 Would you like to know more about any topic?"
                     
                 except Exception as llm_error:
                     print(f"⚠️ LLM error: {llm_error}")
                     # Fallback to article listing if LLM fails
-                    formatted_articles = [article['formatted'] for article in articles_info[:3]]
-                    answer = f"Based on recent news, here's what I found:\n\n" + "\n\n".join(formatted_articles)
+                    answer = f"Here's what I found:\n\n"
+                    answer += f"📰 **Top {len(articles_info)} Articles:**\n\n"
+                    
+                    for i, article in enumerate(articles_info, 1):
+                        answer += f"{i}. **{article['title']}**\n"
+                        article_source = sources[i-1] if i-1 < len(sources) else None
+                        if article_source and article_source != "Unknown":
+                            answer += f"   🔗 [Read more]({article_source})\n"
+                        answer += "\n"
                     answer += "\n\n💬 Would you like to know more about any specific topic?"
         
         # Save to conversation history
