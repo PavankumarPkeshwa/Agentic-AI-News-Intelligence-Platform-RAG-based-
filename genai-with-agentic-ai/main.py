@@ -62,18 +62,16 @@ async def startup_event():
     Sets up periodic news collection every 6 hours.
     """
     logger.info("🚀 Starting GenAI News Service...")
-    logger.info("📰 Initializing AI-powered news collection...")
+    logger.info("📰 AI-powered news collection ready")
     logger.info("🤖 AI Agents: News Scraper → Validator → VectorDB Storage")
     
-    # Initial collection at startup
-    asyncio.create_task(initialize_news_collection(use_samples=False))
-    
-    # Start periodic collection (every 6 hours)
+    # Start periodic collection (every 6 hours) - first run will happen after 6 hours
     from agents.supervisor_agent import periodic_news_collection
     asyncio.create_task(periodic_news_collection(interval_hours=6))
     
-    logger.info("✅ Service ready! AI agents collecting real news in background.")
+    logger.info("✅ Service ready!")
     logger.info("⏰ Automatic news updates every 6 hours")
+    logger.info("💡 Trigger manual collection: POST /scraper/refresh-news")
 
 
 # Root sanity check

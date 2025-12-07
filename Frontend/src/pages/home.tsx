@@ -15,7 +15,7 @@ import type { Category } from "@shared/schema";
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<Category | "all">("all");
   const [sortBy, setSortBy] = useState("latest");
-  const [loadMore, setLoadMore] = useState(false);
+  const [displayLimit, setDisplayLimit] = useState(9); // Show 9 articles initially
 
   const { data: articles, isLoading } = useQuery({
     queryKey: ["/api/articles", selectedCategory === "all" ? undefined : selectedCategory],
@@ -23,10 +23,12 @@ export default function Home() {
   });
 
   const handleLoadMore = () => {
-    setLoadMore(true);
-    // In a real app, this would load more articles with pagination
-    setTimeout(() => setLoadMore(false), 1000);
+    setDisplayLimit(prev => prev + 9); // Load 9 more articles each time
   };
+
+  // Get currently displayed articles
+  const displayedArticles = articles?.slice(0, displayLimit) || [];
+  const hasMore = articles && articles.length > displayLimit;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -75,24 +77,28 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            ) : articles && articles.length > 0 ? (
+            ) : displayedArticles && displayedArticles.length > 0 ? (
               <>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {articles.map((article) => (
+                  {displayedArticles.map((article) => (
                     <ArticleCard key={article.id} article={article} />
                   ))}
                 </div>
                 
                 {/* Load More Button */}
-                <div className="text-center mt-12">
-                  <Button
-                    onClick={handleLoadMore}
-                    disabled={loadMore}
-                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700"
-                  >
-                    {loadMore ? "Loading..." : "Load More Articles"}
-                  </Button>
-                </div>
+                {hasMore && (
+                  <div className="text-center mt-12">
+                    <Button
+                      onClick={handleLoadMore}
+                      className="px-8 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                    >
+                      Load More Articles
+                    </Button>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                      Showing {displayedArticles.length} of {articles?.length} articles
+                    </p>
+                  </div>
+                )}
               </>
             ) : (
               <div className="text-center py-12">
