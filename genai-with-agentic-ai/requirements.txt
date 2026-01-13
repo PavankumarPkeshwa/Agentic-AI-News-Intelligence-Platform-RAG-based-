@@ -27,6 +27,10 @@ faiss-cpu
 beautifulsoup4
 requests
 
+# Task queue & Redis for agentic orchestration
+redis
+rq
+
 # Utilities
 python-dotenv
 feedparser

@@ -51,6 +51,20 @@ bash scripts/start-all.sh
 - 🔧 Backend API: http://localhost:5000
 - 🎨 Frontend UI: http://localhost:5173
 
+> **Note (Agentic runtime / optional):** For the full agentic runtime (planner + queue + workers) the system can use Redis + RQ. If you plan to use the queue-backed planner/worker flow, start a Redis server and an RQ worker before starting services. If Redis/RQ are not running the code will fall back to in-process execution, but distributed task processing requires Redis.
+
+Example commands (local Docker + RQ):
+
+```bash
+# Start Redis (Docker)
+docker run -d --name redis -p 6379:6379 redis:7
+
+# In a shell for the GenAI service, start an RQ worker (requires `rq` installed in the GenAI venv)
+cd genai-with-agentic-ai
+# Start a worker that processes queued tasks
+rq worker &
+```
+
 ### 4. Trigger News Collection
 
 ```bash

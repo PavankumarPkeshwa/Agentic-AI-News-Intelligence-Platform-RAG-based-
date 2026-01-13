@@ -1,7 +1,8 @@
 INFO:     Will watch for changes in these directories: ['/workspaces/Ai-powered-news-platform/genai-with-agentic-ai']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [1979] using WatchFiles
-INFO:     Started server process [2071]
+INFO:     Started reloader process [29032] using WatchFiles
+WARNING:agents.task_queue:Redis/RQ unavailable — falling back to direct execution of tasks
+INFO:     Started server process [29035]
 INFO:     Waiting for application startup.
 INFO:main:🚀 Starting GenAI News Service...
 INFO:main:📰 AI-powered news collection ready
@@ -9,178 +10,205 @@ INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
 INFO:main:✅ Service ready!
 INFO:main:⏰ Automatic news updates every 6 hours
 INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
+INFO:agents.supervisor_agent:🌟 Initializing AI-Powered News Collection System...
+INFO:agents.supervisor_agent:🤖 Agents: Manager → News Scraper → Validator → VectorDB
+INFO:agents.supervisor_agent:🌐 Collecting real news from internet...
+INFO:agents.supervisor_agent:🚀 Starting AI-powered news collection...
+INFO:agents.supervisor_agent:🤖 Agent Pipeline: Manager → Scraper → Validator → VectorDB
+INFO:agents.supervisor_agent:📡 Using RSS feeds + article discovery for better content
+INFO:agents.supervisor_agent:🔍 Collecting Technology news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://techcrunch.com/feed/ (Technology)
 INFO:     Application startup complete.
-⚠️ No HuggingFace token found - will use free models only
-INFO:     103.205.152.156:0 - "GET / HTTP/1.1" 200 OK
-INFO:     103.205.152.156:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
 /workspaces/Ai-powered-news-platform/genai-with-agentic-ai/rag/embedder.py:30: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
   embedding_model = HuggingFaceEmbeddings(
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:45588 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45612 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45576 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45600 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:46558 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:46574 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:45600 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:46558 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:46574 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:     127.0.0.1:45600 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:46574 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:58170 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58164 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:58182 - "GET /news/featured HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agents/langgraph_supervisor.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [2071]
-WARNING:  WatchFiles detected changes in 'agents/langgraph_supervisor.py'. Reloading...
-INFO:     Started server process [7364]
-INFO:     Waiting for application startup.
-INFO:main:🚀 Starting GenAI News Service...
-INFO:main:📰 AI-powered news collection ready
-INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
-INFO:main:✅ Service ready!
-INFO:main:⏰ Automatic news updates every 6 hours
-INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'app/routes/agent_routes.py'. Reloading...
-INFO:     Started server process [7407]
-INFO:     Waiting for application startup.
-INFO:main:🚀 Starting GenAI News Service...
-INFO:main:📰 AI-powered news collection ready
-INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
-INFO:main:✅ Service ready!
-INFO:main:⏰ Automatic news updates every 6 hours
-INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
-INFO:     Application startup complete.
-INFO:     Started server process [7472]
-INFO:     Waiting for application startup.
-INFO:main:🚀 Starting GenAI News Service...
-INFO:main:📰 AI-powered news collection ready
-INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
-INFO:main:✅ Service ready!
-INFO:main:⏰ Automatic news updates every 6 hours
-INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
-INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'tests/test_langgraph_supervisor.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [7472]
-WARNING:  WatchFiles detected changes in 'tests/test_langgraph_supervisor.py'. Reloading...
-INFO:     Started server process [7542]
-INFO:     Waiting for application startup.
-INFO:main:🚀 Starting GenAI News Service...
-INFO:main:📰 AI-powered news collection ready
-INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
-INFO:main:✅ Service ready!
-INFO:main:⏰ Automatic news updates every 6 hours
-INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
-INFO:     Application startup complete.
-INFO:     Started server process [7582]
-INFO:     Waiting for application startup.
-INFO:main:🚀 Starting GenAI News Service...
-INFO:main:📰 AI-powered news collection ready
-INFO:main:🤖 AI Agents: News Scraper → Validator → VectorDB Storage
-INFO:main:✅ Service ready!
-INFO:main:⏰ Automatic news updates every 6 hours
-INFO:main:💡 Trigger manual collection: POST /scraper/refresh-news
-INFO:     Application startup complete.
-/workspaces/Ai-powered-news-platform/genai-with-agentic-ai/rag/embedder.py:30: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
-  embedding_model = HuggingFaceEmbeddings(
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
 INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
 /workspaces/Ai-powered-news-platform/genai-with-agentic-ai/rag/vectordb.py:29: LangChainDeprecationWarning: The class `Chroma` was deprecated in LangChain 0.2.9 and will be removed in 1.0. An updated version of the class exists in the `langchain-chroma package and should be used instead. To use it run `pip install -U `langchain-chroma` and import as `from `langchain_chroma import Chroma``.
   vectordb = Chroma(
 INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+/workspaces/Ai-powered-news-platform/genai-with-agentic-ai/agents/supervisor_agent.py:103: LangChainDeprecationWarning: Since Chroma 0.4.x the manual persistence method is no longer supported as docs are automatically persisted.
+  vectordb.persist()
+INFO:agents.supervisor_agent:✅ Article collected: https://techcrunch.com/2026/01/12/meta-backed-hupo-finds-growth-after-pivot-to-a...
+INFO:agents.supervisor_agent:✅ Article collected: https://techcrunch.com/2026/01/12/at-least-36-new-tech-unicorns-were-minted-in-2...
+INFO:agents.supervisor_agent:✅ Article collected: https://techcrunch.com/2026/01/12/openai-buys-tiny-health-records-startup-torch-...
+INFO:agents.supervisor_agent:✅ 3 articles from https://techcrunch.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.theverge.com/rss/index.xml (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theverge.com/news/861102/microsoft-office-lens-app-end-of-support-re...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theverge.com/22997597/best-robot-vacuum-cleaner...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theverge.com/news/861004/rockstar-fired-union-workers-pay...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.theverge.com/rss/index.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.arstechnica.com/arstechnica/index (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://arstechnica.com/ai/2026/01/anthropic-launches-cowork-a-claude-code-like-...
+INFO:agents.supervisor_agent:✅ Article collected: https://arstechnica.com/space/2026/01/you-can-now-reserve-a-hotel-room-on-the-mo...
 ⚠️ No HuggingFace token found - will use free models only
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-Error loading embedding model: Cannot copy out of meta tensor; no data! Please use torch.nn.Module.to_empty() instead of torch.nn.Module.to() when moving module from meta to a different device.
-INFO:     127.0.0.1:45618 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45606 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:45596 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33490 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33490 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:33490 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Business&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Science&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34296 - "GET /news/fetch?category=Health&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39158 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39158 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:39158 - "GET /news/fetch?category=Sports&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:47790 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:47790 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:47790 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:44246 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56334 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56334 - "GET /news/featured HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56334 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:56334 - "GET /news/fetch?limit=100 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53618 - "GET /news/featured HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53624 - "GET /news/fetch?limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53638 - "GET /news/trending?limit=3 HTTP/1.1" 200 OK
+INFO:agents.supervisor_agent:✅ 2 articles from https://feeds.arstechnica.com/arstechnica/index
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.wired.com/feed/rss (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:     127.0.0.1:53646 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53646 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53646 - "GET /news/fetch?category=Technology&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.engadget.com/rss.xml (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.engadget.com/entertainment/streaming/best-streaming-devices-media-pl...
+INFO:     127.0.0.1:53288 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53288 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53288 - "GET /news/fetch?category=Entertainment&limit=20&offset=0 HTTP/1.1" 200 OK
+INFO:agents.supervisor_agent:✅ Article collected: https://www.engadget.com/deals/our-favorite-ugreen-3-in-1-wireless-charger-is-32...
+INFO:agents.supervisor_agent:✅ 2 articles from https://www.engadget.com/rss.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://mashable.com/feeds/rss/all (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://mashable.com/article/ces-2026-dreame-cyber-10-mechanical-arm-vs-roborock...
+INFO:agents.supervisor_agent:✅ Article collected: https://mashable.com/article/bose-quietcomfort-headphones-review...
+INFO:agents.supervisor_agent:✅ Article collected: https://mashable.com/article/tesla-model-y-third-row...
+INFO:agents.supervisor_agent:✅ 3 articles from https://mashable.com/feeds/rss/all
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.cnet.com/rss/news/ (Technology)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cnet.com/health/nutrition/best-non-alcoholic-drinks/...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cnet.com/tech/computing/lenovos-twisting-laptop-follows-you-around-t...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cnet.com/tech/mobile/this-duck-billed-microphone-protects-against-ea...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.cnet.com/rss/news/
+INFO:agents.supervisor_agent:✅ Technology: 16 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Business news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bbci.co.uk/news/business/rss.xml (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/clyev0kpk77o?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/c394xwdve9lo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/cr578pvlp8qo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ 3 articles from https://feeds.bbci.co.uk/news/business/rss.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.cnbc.com/id/10001147/device/rss/rss.html (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bloomberg.com/markets/news.rss (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.ft.com/?format=rss (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.ft.com/content/48bd0d88-6820-4b82-9694-f52393945740...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.ft.com/content/c5bfbc6d-cd05-4f53-b3b0-5a2de80c139a...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.ft.com/content/0af6d453-84dc-46bc-90b6-711242adde73...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.ft.com/?format=rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.forbes.com/business/feed/ (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.businessinsider.com/rss (Business)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.businessinsider.com/economists-finance-business-leaders-react-trump-...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.businessinsider.com/jerome-powell-worlds-central-bankers-rallying-ar...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.businessinsider.com/new-store-openings-retailer-expansion-plans...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.businessinsider.com/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.wsj.com/xml/rss/3_7085.xml (Business)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.wsj.com/xml/rss/3_7085.xml
+INFO:agents.supervisor_agent:✅ Business: 9 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Science news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.scientificamerican.com/feed/ (Science)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.scientificamerican.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://phys.org/rss-feed/ (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://phys.org/news/2026-01-good-biodiversity-business.html...
+INFO:agents.supervisor_agent:✅ Article collected: https://phys.org/news/2026-01-hawaii-kilauea-volcano-spectacular-lava.html...
+INFO:agents.supervisor_agent:✅ Article collected: https://phys.org/news/2026-01-disaster-losses-picture-alarming-munich.html...
+INFO:agents.supervisor_agent:✅ 3 articles from https://phys.org/rss-feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.nature.com/nature.rss (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.sciencedaily.com/rss/all.xml (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.sciencenews.org/feed (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.newscientist.com/feed/home (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.newscientist.com/article/2511036-pompeiis-public-baths-were-unhygien...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.newscientist.com/article/2510781-quantum-computers-could-help-sharpe...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.newscientist.com/article/2509985-our-elegant-universe-rethinking-nat...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.newscientist.com/feed/home
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.livescience.com/feeds/all (Science)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Science: 6 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Health news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bbci.co.uk/news/health/rss.xml (Health)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/cwyxle17jl8o?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/c1m8m47jl5eo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.bbc.com/news/articles/c89qyv98lzdo?at_medium=RSS&at_campaign=rss...
+INFO:agents.supervisor_agent:✅ 3 articles from https://feeds.bbci.co.uk/news/health/rss.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.medicalnewstoday.com/rss/news.xml (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.medicalnewstoday.com/rss/news.xml
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.healthline.com/feeds/rss (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.healthline.com/feeds/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.webmd.com/rss/rss.aspx (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.webmd.com/rss/rss.aspx
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://health.harvard.edu/feed (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://health.harvard.edu/feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.mayoclinic.org/rss (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.mayoclinic.org/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.nih.gov/feeds/news.xml (Health)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.nih.gov/feeds/news.xml
+INFO:agents.supervisor_agent:✅ Health: 3 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Sports news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://feeds.bbci.co.uk/sport/rss.xml (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.espn.com/espn/rss/news (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.espn.com/nfl/story/_/id/47590417/texans-dominate-steelers-aaron-rodg...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.espn.com/nfl/story/_/id/47596595/defense-carries-texans-steelers-div...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.espn.com/nfl/story/_/id/47596477/rodgers-heyward-back-tomlin-texans-...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.espn.com/espn/rss/news
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.cbssports.com/rss/headlines/ (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cbssports.com/soccer/news/manchester-citys-push-for-silverware-kicks...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cbssports.com/nfl/news/aaron-rodgers-retirement-steelers-texans-wild...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.cbssports.com/nfl/news/nfl-wild-card-mike-tomlin-steelers-playoff-lo...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.cbssports.com/rss/headlines/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://sports.yahoo.com/rss/ (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://sports.yahoo.com/articles/winter-preparation-bvb-women-back-105000933.ht...
+INFO:agents.supervisor_agent:✅ Article collected: https://sports.yahoo.com/articles/efl-cup-probable-lineups-newcastle-105000568.h...
+INFO:agents.supervisor_agent:✅ Article collected: https://sports.yahoo.com/articles/report-man-city-first-move-105000294.html...
+INFO:agents.supervisor_agent:✅ 3 articles from https://sports.yahoo.com/rss/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.foxsports.com/rss (Sports)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://www.foxsports.com/rss
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.skysports.com/rss/12040 (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.theguardian.com/sport/rss (Sports)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theguardian.com/football/2026/jan/13/michael-carrick-manchester-unit...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theguardian.com/sport/2026/jan/13/james-bond-great-uncle-brendan-ing...
+INFO:agents.supervisor_agent:✅ Article collected: https://www.theguardian.com/football/2026/jan/12/xabi-alonso-leaves-real-madrid-...
+INFO:agents.supervisor_agent:✅ 3 articles from https://www.theguardian.com/sport/rss
+INFO:agents.supervisor_agent:✅ Sports: 12 articles collected successfully
+INFO:agents.supervisor_agent:🔍 Collecting Entertainment news...
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://variety.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://deadline.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Article collected: https://deadline.com/2026/01/greenland-anton-hires-sky-focus-jamie-schwartz-mark...
+INFO:agents.supervisor_agent:✅ Article collected: https://deadline.com/2026/01/bbc-throw-out-donald-trump-lawsuit-panorama-edit-12...
+INFO:agents.supervisor_agent:✅ Article collected: https://deadline.com/2026/01/goodfellas-venus-electrificata-pio-marmai-anais-dem...
+INFO:agents.supervisor_agent:✅ 3 articles from https://deadline.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.hollywoodreporter.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://ew.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 0 articles from RSS feed
+WARNING:agents.supervisor_agent:⚠️  No articles found from https://ew.com/feed/
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.indiewire.com/feed/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.avclub.com/rss (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:📰 Processing RSS source: https://www.rollingstone.com/music/rss/ (Entertainment)
+INFO:agents.scraper_agent:📰 Found 3 articles from RSS feed
+INFO:agents.supervisor_agent:✅ Entertainment: 3 articles collected successfully
+INFO:agents.supervisor_agent:🎉 AI collection complete! 49 real articles from internet
+INFO:agents.supervisor_agent:📊 Sources processed: 42 sources
+INFO:agents.supervisor_agent:📡 Collection methods: RSS feeds + article discovery
+INFO:agents.supervisor_agent:✅ Real news collection successful! 49 articles added
+INFO:agents.supervisor_agent:📊 Sources: TechCrunch, Variety, BBC, Reuters, etc.
