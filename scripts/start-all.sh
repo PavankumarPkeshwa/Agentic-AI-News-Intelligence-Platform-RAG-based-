@@ -9,7 +9,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}╔════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║   ML-Powered AI News Platform - Quick Start       ║${NC}"
+echo -e "${BLUE}║  Agentic-AI-News-Intelligence-Platform-RAG-based- Quick Start ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════╝${NC}"
 echo ""
 
