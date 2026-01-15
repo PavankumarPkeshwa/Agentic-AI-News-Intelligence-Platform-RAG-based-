@@ -25,30 +25,32 @@ const axios = require("axios");
 
 const PORT = process.env.PORT || 5000;
 
-// ✅ Use Hugging Face URL via env variable
+// ✅ SINGLE SOURCE OF TRUTH
 const GENAI_SERVICE_URL =
   process.env.GENAI_SERVICE_URL || "http://localhost:8000";
 
-// Axios client for GenAI
+// Axios client
 const genaiClient = axios.create({
-  baseURL: GENAI_BASE_URL,
+  baseURL: GENAI_SERVICE_URL,
   timeout: 60000, // HF cold starts
 });
 
-// 🔍 Test GenAI service health (use /docs or /health)
+// 🔍 Test GenAI service
 genaiClient
   .get("/docs")
   .then(() => {
-    console.log("✅ GenAI Service connected:", GENAI_BASE_URL);
+    console.log("✅ GenAI Service connected:", GENAI_SERVICE_URL);
   })
-  .catch(() => {
+  .catch((err) => {
     console.warn(
       "⚠️  GenAI Service not available at",
-      GENAI_BASE_URL
+      GENAI_SERVICE_URL,
+      err.message
     );
   });
 
 app.listen(PORT, () => {
   console.log(`🚀 Backend Server running on port ${PORT}`);
-  console.log(`📡 GenAI Base URL: ${GENAI_BASE_URL}`);
+  console.log(`📡 GenAI Service URL: ${GENAI_SERVICE_URL}`);
 });
+
